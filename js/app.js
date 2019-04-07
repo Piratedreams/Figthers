@@ -64,24 +64,25 @@ const d4Roll = (e) => {
      d4DmgRoll = Math.floor(Math.random() * 4) + 1;
      console.log(d4DmgRoll);
      return d4DmgRoll
+     
 }
 // have whoever is hit, have hp - dmg. 
 const  kickDmg = () => {
-    if (hitRoll >= 1){
+    if (d4DmgRoll >= 1){
         computer.hp -= computer.hp - d4DmgRoll;
         $('.computer-hp').text(computer.hp); 
         $('.player-hp').text(player.hp);
     }
 }
 const  LungeDmg = () => {
-    if (hitRoll >= 1){
+    if (d6DmgRoll >= 1){
         computer.hp -= computer.hp - d6DmgRoll;
         $('.pHp').text(computer.hp); 
         $('.cHp').text(player.hp);
     }
 }
 const  punchDmg = () => {
-    if (hitRoll >= 1){
+    if (d4DmgRoll >= 1){
         computer.hp -= computer.hp - d4DmgRoll;
         $('.computer-hp').text(computer.hp); 
         $('.player-hp').text(player.hp);
@@ -89,7 +90,7 @@ const  punchDmg = () => {
 }
 // check if each character is alive
 const aliveCheck = () => {
-    if(player.hp > 0){
+    if(playerOne.hp > 0){
         console.log('player is alive.')
     
     } 
@@ -121,6 +122,7 @@ $('.lunge').on('click', (e) => {
 
     } else {
         console.log('hit roll failed, computers turn.');
+        computerAttack();
     }
 });
 // if kick is <= 11 hit -----> d4
@@ -133,6 +135,7 @@ $('.kick').on('click', (e) => {
         console.log('hit roll passed onto damage roll');
     } else {
         console.log('hit roll failed, computers turn.');
+        computerAttack();
     }
 });
 // if punch is <= 12 hit ------> d4
@@ -144,11 +147,13 @@ $('.punch').on('click', (e) => {
         d4Roll();
     } else {
         console.log('hit roll failed, computers turn.'); 
+        computerAttack();
     }
 });
 $('.d20').on('click', (e) => {
-    // d20Roll();
+    d20Roll();
     console.log('attempting to roll d20');
+    console.log(hitRoll);
 });
 // if hit show corresponding die button.
 // $('.d20Roll').hide();
@@ -179,15 +184,20 @@ const compareHp = () => {
 
 
 // computer takes turn to attack player.
+let computerChoice = 2;
 const computerAttack = () => {
     let computerAlive = true;
     if(computer.hp > 0) {
         console.log('computer attacks player.');
         computerAlive = true;
         computer.attack = playerOne;
-       Math.random( 0, 2);
+       Math.floor(Math.random() * 3) + 1;
+
     } else {
         computerAlive = false;
+        console.log('computer is dead, moving to next round.')
     }
 
 }
+// Do I need to create an attack function for the player as well? 
+// create a function for the computer to choose on which move to make. 
