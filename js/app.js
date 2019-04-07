@@ -44,23 +44,25 @@ const d4 = new Die (4);
 // d20 roll check to see if move hits
 let hitRoll = 0;
 let d6DmgRoll = 0;
-let d4DmgRoll = 0;git
+let d4DmgRoll = 0;
 const d20Roll = () => {
-     hitRoll = Math.random(1, 20);
+     hitRoll = Math.floor(Math.random() * 20) + 1;
         // $('.d20Roll').hide();
         console.log('d20 was rolled.');
+        console.log(hitRoll);
     // if the number is 20 then it is a critical hit.
 }
 // Have a d6 check for lunge/kick dmg.
 const d6Roll = (e) => {
     console.log('d6 was rolled.');
-    d6DmgRoll = Math.random(1, 6);
+    d6DmgRoll = Math.floor(Math.random() * 6) + 1;
     return d6DmgRoll;
 }
 // have a d4 check for punch dmg. 
 const d4Roll = (e) => {
     console.log('d4 was rolled.');
-     d4DmgRoll = Math.random(1, 4);
+     d4DmgRoll = Math.floor(Math.random() * 4) + 1;
+     console.log(d4DmgRoll);
      return d4DmgRoll
 }
 // have whoever is hit, have hp - dmg. 
@@ -74,8 +76,8 @@ const  kickDmg = () => {
 const  LungeDmg = () => {
     if (hitRoll >= 1){
         computer.hp -= computer.hp - d6DmgRoll;
-        $('.computer-hp').text(computer.hp); 
-        $('.player-hp').text(player.hp);
+        $('.pHp').text(computer.hp); 
+        $('.cHp').text(player.hp);
     }
 }
 const  punchDmg = () => {
@@ -106,6 +108,7 @@ const aliveCheck = () => {
 //create start button
 $('.start').click(function (e) {
  console.log('new game has started.');
+ 
 });
 // display 3 attack buttons
 $('.lunge').on('click', (e) => {
@@ -114,7 +117,10 @@ $('.lunge').on('click', (e) => {
     d20Roll();
     if(hitRoll >= 15) {
         d6Roll();
-        console.log('dealing' + d6DmgRoll);
+        console.log('hit roll passed, damage roll next');
+
+    } else {
+        console.log('hit roll failed, computers turn.');
     }
 });
 // if kick is <= 11 hit -----> d4
@@ -122,8 +128,11 @@ $('.kick').on('click', (e) => {
     console.log('kick was clicked.');
     d20Roll();
     if(hitRoll >= 11) {
+        console.log('hit roll was greater than 11.');
         d4Roll();
-        console.log('dealing' + d4DmgRoll);
+        console.log('hit roll passed onto damage roll');
+    } else {
+        console.log('hit roll failed, computers turn.');
     }
 });
 // if punch is <= 12 hit ------> d4
@@ -131,11 +140,13 @@ $('.punch').on('click', (e) => {
     console.log('punch was clicked.');
     d20Roll();
     if(hitRoll >= 12){
+        console.log('hit roll passed.');
         d4Roll();
-        console.log('dealing' + d4DmgRoll);
+    } else {
+        console.log('hit roll failed, computers turn.'); 
     }
 });
-$('#d20').on('click', (e) => {
+$('.d20').on('click', (e) => {
     // d20Roll();
     console.log('attempting to roll d20');
 });
