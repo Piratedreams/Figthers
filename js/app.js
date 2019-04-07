@@ -1,4 +1,5 @@
-// establishing character class
+ console.log('running');
+ // establishing character class
 class Fighter{
     constructor(name){
         this.name = '';
@@ -15,7 +16,7 @@ class Die {
     }
 }
 // Creating player1
-const playerOne = new Fighter ();
+const playerOne = new Fighter ('Ben');
 // input player name.
 // Creating computer fighter
 const computer = new Fighter('opponent');
@@ -43,10 +44,10 @@ const d4 = new Die (4);
 // d20 roll check to see if move hits
 let hitRoll = 0;
 let d6DmgRoll = 0;
-let d4DmgRoll = 0;
+let d4DmgRoll = 0;git
 const d20Roll = () => {
      hitRoll = Math.random(1, 20);
-        $('.d20Roll').hide();
+        // $('.d20Roll').hide();
         console.log('d20 was rolled.');
     // if the number is 20 then it is a critical hit.
 }
@@ -103,11 +104,12 @@ const aliveCheck = () => {
 //              Buttons
 //==============================
 //create start button
-$('.start').on('click', (e) => {
+$('.start').click(function (e) {
  console.log('new game has started.');
 });
 // display 3 attack buttons
 $('.lunge').on('click', (e) => {
+    console.log('lunge was clicked.');
     // if lunge is <= 15 its a hit ------> d6
     d20Roll();
     if(hitRoll >= 15) {
@@ -117,6 +119,7 @@ $('.lunge').on('click', (e) => {
 });
 // if kick is <= 11 hit -----> d4
 $('.kick').on('click', (e) => {
+    console.log('kick was clicked.');
     d20Roll();
     if(hitRoll >= 11) {
         d4Roll();
@@ -125,6 +128,7 @@ $('.kick').on('click', (e) => {
 });
 // if punch is <= 12 hit ------> d4
 $('.punch').on('click', (e) => {
+    console.log('punch was clicked.');
     d20Roll();
     if(hitRoll >= 12){
         d4Roll();
