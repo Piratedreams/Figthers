@@ -1,0 +1,16 @@
+body {
+    background-color: brown;
+    
+}
+.move-list {
+    text-decoration: none;
+    width: 60px;
+    height: 20px;
+    padding: 30px 20px;
+    margin: 30px;
+}
+.die-bar {
+    padding: 30px;
+    margin: 20px;
+
+}
