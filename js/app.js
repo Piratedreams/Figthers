@@ -70,22 +70,22 @@ const d4Roll = (e) => {
 const  kickDmg = () => {
     if (d4DmgRoll >= 1){
         computer.hp -= computer.hp - d4DmgRoll;
-        $('.computer-hp').text(computer.hp); 
-        $('.player-hp').text(player.hp);
+        $('.cHp').text(computer['hp']); 
+        $('.pHp').text(playerOne['hp']);
     }
 }
 const  LungeDmg = () => {
     if (d6DmgRoll >= 1){
         computer.hp -= computer.hp - d6DmgRoll;
-        $('.pHp').text(computer.hp); 
-        $('.cHp').text(player.hp);
+        $('.pHp').text(computer['hp']); 
+        $('.cHp').text(playerOne['hp']);
     }
 }
 const  punchDmg = () => {
     if (d4DmgRoll >= 1){
         computer.hp -= computer.hp - d4DmgRoll;
-        $('.computer-hp').text(computer.hp); 
-        $('.player-hp').text(player.hp);
+        $('.cHp').text(computer['hp']); 
+        $('.pHp').text(playerOne['hp']);
     }
 }
 // check if each character is alive
@@ -109,7 +109,8 @@ const aliveCheck = () => {
 //create start button
 $('.start').click(function (e) {
  console.log('new game has started.');
- 
+    $('#cHp').text(computer['hp']); 
+    $('#pHp').text(playerOne['hp']);
 });
 // display 3 attack buttons
 $('.lunge').on('click', (e) => {
@@ -155,6 +156,16 @@ $('.d20').on('click', (e) => {
     console.log('attempting to roll d20');
     console.log(hitRoll);
 });
+$('.d6').on('click', (e) => {
+    d6Roll();
+    console.log('rolling d6');
+    console.log(d6DmgRoll);
+});
+$('.d4').on('click', (e) => {
+    d4Roll();
+    console.log('rolling d4');
+    console.log(d4DmgRoll)
+});
 // if hit show corresponding die button.
 // $('.d20Roll').hide();
 // use result to call dmg mechanics.
@@ -197,7 +208,6 @@ const computerAttack = () => {
         computerAlive = false;
         console.log('computer is dead, moving to next round.')
     }
-
 }
 // Do I need to create an attack function for the player as well? 
 // create a function for the computer to choose on which move to make. 
