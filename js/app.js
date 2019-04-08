@@ -202,8 +202,8 @@ const computerAttack = () => {
         console.log('computer attacks player.');
         computerAlive = true;
         computer.attack = playerOne;
-       Math.floor(Math.random() * 3) + 1;
-
+       computerChoice = Math.floor(Math.random() * 3) + 1;
+        console.log(computerChoice);
     } else {
         computerAlive = false;
         console.log('computer is dead, moving to next round.')
