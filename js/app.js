@@ -103,9 +103,11 @@ const aliveCheck = () => {
     }
     // if both computer and player are alive move to next turn. 
 }
-// subtract health of computer function.
+// stop game when player dies.
+const playerDeath = () => {
+    prompt('you died! play again?', 'y/n?');
+}
 
-// subtract health of player function.
 
 
 //==============================
