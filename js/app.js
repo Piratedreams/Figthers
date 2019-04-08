@@ -100,7 +100,9 @@ const aliveCheck = () => {
     }
     // if both computer and player are alive move to next turn. 
 }
+// subtract health of computer function.
 
+// subtract health of player function.
 
 
 //==============================
@@ -160,11 +162,15 @@ $('.d6').on('click', (e) => {
     d6Roll();
     console.log('rolling d6');
     console.log(d6DmgRoll);
+    playerOne.dmg = d6DmgRoll;
+    console.log(playerOne.dmg + ' is players dmg');
 });
 $('.d4').on('click', (e) => {
     d4Roll();
     console.log('rolling d4');
     console.log(d4DmgRoll)
+    playerOne.dmg = d4DmgRoll;
+    console.log(playerOne.dmg + ' is players dmg');
 });
 // if hit show corresponding die button.
 // $('.d20Roll').hide();
@@ -177,12 +183,12 @@ $('.d4').on('click', (e) => {
 
 // compare how much damage has been done to computer 
 const compareHp = () => {
-    if (player.hp <= 0) {
+    if (playerOne.hp <= 0) {
 
         console.log('player has died. game over')
         // if else (computer.hp === 0) 
     } else if (computer.hp <= 0) {
-        player.hp = 10;
+        playerOne.hp = 10;
         console.log('computer has died, onto next round.')
     }
 }
@@ -214,8 +220,9 @@ const computerAttack = () => {
                 console.log('hit roll was greater than 11.');
                 d4Roll();
                 console.log('hit roll passed onto damage roll');
+                computer.dmg = d6DmgRoll;
             } else {
-                console.log('hit roll failed, computers turn.');
+                console.log('hit roll failed, players turn.');
             }
     } else if(computerChoice === 2) { // kick choice
         console.log('computer chose to kick.');
@@ -224,8 +231,9 @@ const computerAttack = () => {
                 console.log('hit roll was greater than 11.');
                 d4Roll();
                 console.log('hit roll passed onto damage roll');
+                computer.dmg = d4DmgRoll
                 } else {
-                    console.log('hit roll failed, computers turn.');
+                    console.log('hit roll failed, players turn.');
                 }
     } else if(computerChoice === 3) { // punch choice
         console.log('computer chose to punch.');
@@ -234,11 +242,13 @@ const computerAttack = () => {
             console.log('hit roll was greater than 11.');
             d4Roll();
             console.log('hit roll passed onto damage roll');
+            computer.dmg = d4DmgRoll;
         } else {
             console.log('hit roll failed, players turn.');
+            
         }
     }
 }
 // Do I need to create an attack function for the player as well? 
 // create a function for the computer to choose on which move to make. 
- 
+  
