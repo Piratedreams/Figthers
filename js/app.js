@@ -57,13 +57,14 @@ const d6Roll = (e) => {
     console.log('d6 was rolled.');
     d6DmgRoll = Math.floor(Math.random() * 6) + 1;
     return d6DmgRoll;
+    $('.hit-sound').play();
 }
 // have a d4 check for punch dmg. 
 const d4Roll = (e) => {
     console.log('d4 was rolled.');
      d4DmgRoll = Math.floor(Math.random() * 4) + 1;
      console.log(d4DmgRoll);
-     $('.hit-sound').play();
+     let audio = $('.hit-sound')[0]; audio.play();
      return d4DmgRoll
      
 }
@@ -161,25 +162,31 @@ $('.punch').on('click', (e) => {
         computerAttack();
     }
 });
+
+
 $('.d20').on('click', (e) => {
     d20Roll();
     console.log('attempting to roll d20');
     console.log(hitRoll);
 });
+
+
 $('.d6').on('click', (e) => {
     d6Roll();
     console.log('rolling d6');
     console.log(d6DmgRoll);
-    $('.hit-sound').play();
+    let audio = $('.hit-sound')[0]; audio.play();
     playerOne.dmg = d6DmgRoll;
     console.log(playerOne.dmg + ' is players dmg');
     playerAttackDmg();
 });
+
+
 $('.d4').on('click', (e) => {
     d4Roll();
     console.log('rolling d4');
     console.log(d4DmgRoll)
-    $('.hit-sound').play();
+    let audio = $('.hit-sound')[0]; audio.play();
     playerOne.dmg = d4DmgRoll;
     console.log(playerOne.dmg + ' is players dmg');
     playerAttackDmg();
