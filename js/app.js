@@ -93,10 +93,13 @@ const aliveCheck = () => {
     if(playerOne.hp > 0){
         console.log('player is alive.')
     
-    } 
+    } else {
+        console.log('player has died! YOU LOSE!');
+    }
     if(computer.hp > 0) {
         console.log('computer is alive.')
-    
+    } else {
+        console.log('computer has died! next round');
     }
     // if both computer and player are alive move to next turn. 
 }
@@ -120,9 +123,7 @@ $('.lunge').on('click', (e) => {
     // if lunge is <= 15 its a hit ------> d6
     d20Roll();
     if(hitRoll >= 15) {
-        d6Roll();
         console.log('hit roll passed, damage roll next');
-
     } else {
         console.log('hit roll failed, computers turn.');
         computerAttack();
@@ -134,8 +135,6 @@ $('.kick').on('click', (e) => {
     d20Roll();
     if(hitRoll >= 11) {
         console.log('hit roll was greater than 11.');
-        d4Roll();
-        console.log('hit roll passed onto damage roll');
     } else {
         console.log('hit roll failed, computers turn.');
         computerAttack();
@@ -147,7 +146,6 @@ $('.punch').on('click', (e) => {
     d20Roll();
     if(hitRoll >= 12){
         console.log('hit roll passed.');
-        d4Roll();
     } else {
         console.log('hit roll failed, computers turn.'); 
         computerAttack();
@@ -164,6 +162,7 @@ $('.d6').on('click', (e) => {
     console.log(d6DmgRoll);
     playerOne.dmg = d6DmgRoll;
     console.log(playerOne.dmg + ' is players dmg');
+    playerAttackDmg();
 });
 $('.d4').on('click', (e) => {
     d4Roll();
@@ -171,6 +170,7 @@ $('.d4').on('click', (e) => {
     console.log(d4DmgRoll)
     playerOne.dmg = d4DmgRoll;
     console.log(playerOne.dmg + ' is players dmg');
+    playerAttackDmg();
 });
 // if hit show corresponding die button.
 // $('.d20Roll').hide();
@@ -182,15 +182,16 @@ $('.d4').on('click', (e) => {
 // ================================
 
 // compare how much damage has been done to computer 
-const compareHp = () => {
-    if (playerOne.hp <= 0) {
-
-        console.log('player has died. game over')
-        // if else (computer.hp === 0) 
-    } else if (computer.hp <= 0) {
-        playerOne.hp = 10;
-        console.log('computer has died, onto next round.')
-    }
+const playerAttackDmg = () => {
+   console.log('player is attacking');
+   computer.hp -= computer.hp - playerOne.dmg;
+   $('#cHp').text(computer.hp);
+   computerAttack();
+}
+const computerAttackDmg = () => {
+    console.log('computer is attacking');
+    playerOne.hp -= playerOne.hp - computer.dmg;
+    $('#pHp').text(playerOne.hp);
 }
 // and the user.
 // subtract how much damage has been dealt to corrisponding hp.
@@ -221,6 +222,7 @@ const computerAttack = () => {
                 d4Roll();
                 console.log('hit roll passed onto damage roll');
                 computer.dmg = d6DmgRoll;
+                computerAttackDmg();
             } else {
                 console.log('hit roll failed, players turn.');
             }
@@ -232,6 +234,7 @@ const computerAttack = () => {
                 d4Roll();
                 console.log('hit roll passed onto damage roll');
                 computer.dmg = d4DmgRoll
+                computerAttackDmg();
                 } else {
                     console.log('hit roll failed, players turn.');
                 }
@@ -243,6 +246,7 @@ const computerAttack = () => {
             d4Roll();
             console.log('hit roll passed onto damage roll');
             computer.dmg = d4DmgRoll;
+            computerAttackDmg();
         } else {
             console.log('hit roll failed, players turn.');
             
