@@ -92,17 +92,16 @@ const  punchDmg = () => {
 }
 // check if each character is alive
 const aliveCheck = () => {
-    if(playerOne.hp > 0){
+    if(playerOne.hp >= 0){
         console.log('player is alive.')
-    
     } else {
         console.log('player has died! YOU LOSE!');
         playerDeath();
     }
-    if(computer.hp > 0) {
+    if(computer.hp >= 0) {
         console.log('computer is alive.')
     } else {
-        console.log('computer has died! next round');
+        alert('you have defeated your first opponent. onto the next round.')
     }
     // if both computer and player are alive move to next turn. 
 }
@@ -111,7 +110,7 @@ const playerDeath = () => {
     prompt('you died! play again?', 'y/n?');
 }
 
-
+aliveCheck();
 
 //==============================
 //              Buttons
@@ -129,7 +128,7 @@ $('.lunge').on('click', (e) => {
     // if lunge is <= 15 its a hit ------> d6
     d20Roll();
     if(hitRoll >= 15) {
-        $('#stats').text('lunge roll passed, damage roll next');
+        $('#stats').text('lunge roll passed, roll a d6 next.');
         console.log('hit roll passed, damage roll next');
     } else {
         $('#stats').text('hit roll failed, computers turn.');
@@ -204,13 +203,13 @@ $('.d4').on('click', (e) => {
 // compare how much damage has been done to computer 
 const playerAttackDmg = () => {
    console.log('player is attacking');
-   computer.hp -= computer.hp - playerOne.dmg;
+   computer.hp = computer.hp - playerOne.dmg;
    $('#cHp').text(computer.hp);
    computerAttack();
 }
 const computerAttackDmg = () => {
     console.log('computer is attacking');
-    playerOne.hp -= playerOne.hp - computer.dmg;
+    playerOne.hp = playerOne.hp - computer.dmg;
     $('#pHp').text(playerOne.hp);
 }
 // and the user.
@@ -240,36 +239,40 @@ const computerAttack = () => {
             if(hitRoll >= 11) {
                         $('#stats').text('computers hit roll was successful.')
 
-                console.log('hit roll was greater than 11.');
+                
                 d4Roll();
-                console.log('hit roll passed onto damage roll');
+               
                 computer.dmg = d6DmgRoll;
                 computerAttackDmg();
             } else {
+                $('#stats').text('hit roll failed players turn.');
                 console.log('hit roll failed, players turn.');
             }
     } else if(computerChoice === 2) { // kick choice
         console.log('computer chose to kick.');
         d20Roll();
             if(hitRoll >= 11) {
-                console.log('hit roll was greater than 11.');
+                
                 d4Roll();
-                console.log('hit roll passed onto damage roll');
+                $('#stats').text('computers kick roll was successful')
+               
                 computer.dmg = d4DmgRoll
                 computerAttackDmg();
                 } else {
+                     $('#stats').text('hit roll failed players turn.');
                     console.log('hit roll failed, players turn.');
                 }
     } else if(computerChoice === 3) { // punch choice
         console.log('computer chose to punch.');
         d20Roll();
         if(hitRoll >= 11) {
-            console.log('hit roll was greater than 11.');
+            $('#stats').text('computers punch attack was successful.');
             d4Roll();
             console.log('hit roll passed onto damage roll');
             computer.dmg = d4DmgRoll;
             computerAttackDmg();
         } else {
+             $('#stats').text('hit roll failed players turn.');
             console.log('hit roll failed, players turn.');
             
         }
