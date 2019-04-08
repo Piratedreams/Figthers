@@ -63,6 +63,7 @@ const d4Roll = (e) => {
     console.log('d4 was rolled.');
      d4DmgRoll = Math.floor(Math.random() * 4) + 1;
      console.log(d4DmgRoll);
+     $('.hit-sound').play();
      return d4DmgRoll
      
 }
@@ -152,10 +153,10 @@ $('.punch').on('click', (e) => {
     console.log('punch was clicked.');
     d20Roll();
     if(hitRoll >= 12){
-        $('.stats').text('punch hit check has passed.');
+        $('#stats').text('punch hit check has passed.');
         console.log('hit roll passed.');
     } else {
-        $('.stats').text('punch hit check failed.');
+        $('#stats').text('punch hit check failed.');
         console.log('hit roll failed, computers turn.'); 
         computerAttack();
     }
@@ -196,13 +197,13 @@ $('.d4').on('click', (e) => {
 const playerAttackDmg = () => {
    console.log('player is attacking');
    computer.hp -= computer.hp - playerOne.dmg;
-   $('#cHp').text(computer.hp);
+   $('.cHp').text(computer.hp);
    computerAttack();
 }
 const computerAttackDmg = () => {
     console.log('computer is attacking');
     playerOne.hp -= playerOne.hp - computer.dmg;
-    $('#pHp').text(playerOne.hp);
+    $('.pHp').text(playerOne.hp);
 }
 // and the user.
 // subtract how much damage has been dealt to corrisponding hp.
