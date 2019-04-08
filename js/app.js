@@ -165,6 +165,7 @@ $('.d4').on('click', (e) => {
     d4Roll();
     console.log('rolling d4');
     console.log(d4DmgRoll)
+    
 });
 // if hit show corresponding die button.
 // $('.d20Roll').hide();
@@ -207,7 +208,38 @@ const computerAttack = () => {
     } else {
         computerAlive = false;
         console.log('computer is dead, moving to next round.')
+    } if (computerChoice === 1) { // Lunge choice
+        console.log('computer chose to lunge.');
+        d20Roll();
+            if(hitRoll >= 11) {
+                console.log('hit roll was greater than 11.');
+                d4Roll();
+                console.log('hit roll passed onto damage roll');
+            } else {
+                console.log('hit roll failed, computers turn.');
+            }
+    } else if(computerChoice === 2) { // kick choice
+        console.log('computer chose to kick.');
+        d20Roll();
+            if(hitRoll >= 11) {
+                console.log('hit roll was greater than 11.');
+                d4Roll();
+                console.log('hit roll passed onto damage roll');
+                } else {
+                    console.log('hit roll failed, computers turn.');
+                }
+    } else if(computerChoice === 3) { // punch choice
+        console.log('computer chose to punch.');
+        d20Roll();
+        if(hitRoll >= 11) {
+            console.log('hit roll was greater than 11.');
+            d4Roll();
+            console.log('hit roll passed onto damage roll');
+        } else {
+            console.log('hit roll failed, players turn.');
+        }
     }
 }
 // Do I need to create an attack function for the player as well? 
 // create a function for the computer to choose on which move to make. 
+ 
