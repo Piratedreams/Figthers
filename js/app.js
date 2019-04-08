@@ -72,22 +72,22 @@ const d4Roll = (e) => {
 const  kickDmg = () => {
     if (d4DmgRoll >= 1){
         computer.hp -= computer.hp - d4DmgRoll;
-        $('.cHp').text(computer['hp']); 
-        $('.pHp').text(playerOne['hp']);
+        $('#cHp').text(computer['hp']); 
+        $('#pHp').text(playerOne['hp']);
     }
 }
 const  LungeDmg = () => {
     if (d6DmgRoll >= 1){
         computer.hp -= computer.hp - d6DmgRoll;
-        $('.pHp').text(computer['hp']); 
-        $('.cHp').text(playerOne['hp']);
+        $('#pHp').text(computer['hp']); 
+        $('#cHp').text(playerOne['hp']);
     }
 }
 const  punchDmg = () => {
     if (d4DmgRoll >= 1){
         computer.hp -= computer.hp - d4DmgRoll;
-        $('.cHp').text(computer['hp']); 
-        $('.pHp').text(playerOne['hp']);
+        $('#cHp').text(computer['hp']); 
+        $('#pHp').text(playerOne['hp']);
     }
 }
 // check if each character is alive
@@ -97,6 +97,7 @@ const aliveCheck = () => {
     
     } else {
         console.log('player has died! YOU LOSE!');
+        playerDeath();
     }
     if(computer.hp > 0) {
         console.log('computer is alive.')
@@ -128,10 +129,10 @@ $('.lunge').on('click', (e) => {
     // if lunge is <= 15 its a hit ------> d6
     d20Roll();
     if(hitRoll >= 15) {
-        $('.stats').text('lunge roll passed, damage roll next');
+        $('#stats').text('lunge roll passed, damage roll next');
         console.log('hit roll passed, damage roll next');
     } else {
-        $('.stats').text('hit roll failed, computers turn.');
+        $('#stats').text('hit roll failed, computers turn.');
         console.log('hit roll failed, computers turn.');
         computerAttack();
     }
@@ -141,10 +142,10 @@ $('.kick').on('click', (e) => {
     console.log('kick was clicked.');
     d20Roll();
     if(hitRoll >= 11) {
-        $('.stats').text('Kick hit check has passed.');
+        $('#stats').text('Kick hit check has passed.');
         console.log('hit roll was greater than 11.');
     } else {
-        $('.stats').text('kick attempt failed.')
+        $('#stats').text('kick attempt failed.')
         console.log('hit roll failed, computers turn.');
         computerAttack();
     }
@@ -204,13 +205,13 @@ $('.d4').on('click', (e) => {
 const playerAttackDmg = () => {
    console.log('player is attacking');
    computer.hp -= computer.hp - playerOne.dmg;
-   $('.cHp').text(computer.hp);
+   $('#cHp').text(computer.hp);
    computerAttack();
 }
 const computerAttackDmg = () => {
     console.log('computer is attacking');
     playerOne.hp -= playerOne.hp - computer.dmg;
-    $('.pHp').text(playerOne.hp);
+    $('#pHp').text(playerOne.hp);
 }
 // and the user.
 // subtract how much damage has been dealt to corrisponding hp.
@@ -234,9 +235,11 @@ const computerAttack = () => {
         computerAlive = false;
         console.log('computer is dead, moving to next round.')
     } if (computerChoice === 1) { // Lunge choice
-        console.log('computer chose to lunge.');
+        // $('#stats').text('computer chose to lunge.')
         d20Roll();
             if(hitRoll >= 11) {
+                        $('#stats').text('computers hit roll was successful.')
+
                 console.log('hit roll was greater than 11.');
                 d4Roll();
                 console.log('hit roll passed onto damage roll');
@@ -273,5 +276,19 @@ const computerAttack = () => {
     }
 }
 // Do I need to create an attack function for the player as well? 
-// create a function for the computer to choose on which move to make. 
-  
+// Create a function to go onto the next round.
+const nextRound = () => {
+    if (computer.hp === 0){
+        playerOne.hp = 10;
+        // increase computer hp by 1 each round. 
+
+    }
+}
+  // reset function to show all of the buttons again.
+  const showAll = () => {
+      $('.d6').show();
+      $('.d4').show();
+      $('.kick').show();
+      $('.lunge').show();
+      $('.punch').show();
+  }

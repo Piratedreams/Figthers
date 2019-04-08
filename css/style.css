@@ -1,6 +1,7 @@
 body {
     background-color: brown;
     color: white;
+    font-family: cabin;
 }
 .move-list {
     text-decoration: none;
@@ -9,9 +10,10 @@ body {
     padding: 30px 20px;
     margin: 30px;
 }
-.die-bar {
+.menu {
     padding: 30px;
     margin: 20px;
+    background-color: #CCCC13;
 
 }
 button {
@@ -19,6 +21,10 @@ button {
     width: 50px;
     height: 20px;
 }
-/* .game-title{
+.game-title{
     position: center;
-} */
+}
+#stats {
+    
+
+}
