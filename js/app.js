@@ -118,6 +118,7 @@ $('.start').click(function (e) {
  console.log('new game has started.');
     $('#cHp').text(computer['hp']); 
     $('#pHp').text(playerOne['hp']);
+    $(this).hide();
 });
 // display 3 attack buttons
 $('.lunge').on('click', (e) => {
@@ -125,8 +126,10 @@ $('.lunge').on('click', (e) => {
     // if lunge is <= 15 its a hit ------> d6
     d20Roll();
     if(hitRoll >= 15) {
+        $('.stats').text('lunge roll passed, damage roll next');
         console.log('hit roll passed, damage roll next');
     } else {
+        $('.stats').text('hit roll failed, computers turn.');
         console.log('hit roll failed, computers turn.');
         computerAttack();
     }
@@ -136,8 +139,10 @@ $('.kick').on('click', (e) => {
     console.log('kick was clicked.');
     d20Roll();
     if(hitRoll >= 11) {
+        $('.stats').text('Kick hit check has passed.');
         console.log('hit roll was greater than 11.');
     } else {
+        $('.stats').text('kick attempt failed.')
         console.log('hit roll failed, computers turn.');
         computerAttack();
     }
@@ -147,8 +152,10 @@ $('.punch').on('click', (e) => {
     console.log('punch was clicked.');
     d20Roll();
     if(hitRoll >= 12){
+        $('.stats').text('punch hit check has passed.');
         console.log('hit roll passed.');
     } else {
+        $('.stats').text('punch hit check failed.');
         console.log('hit roll failed, computers turn.'); 
         computerAttack();
     }
@@ -162,6 +169,7 @@ $('.d6').on('click', (e) => {
     d6Roll();
     console.log('rolling d6');
     console.log(d6DmgRoll);
+    $('.hit-sound').play();
     playerOne.dmg = d6DmgRoll;
     console.log(playerOne.dmg + ' is players dmg');
     playerAttackDmg();
@@ -170,6 +178,7 @@ $('.d4').on('click', (e) => {
     d4Roll();
     console.log('rolling d4');
     console.log(d4DmgRoll)
+    $('.hit-sound').play();
     playerOne.dmg = d4DmgRoll;
     console.log(playerOne.dmg + ' is players dmg');
     playerAttackDmg();
