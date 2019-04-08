@@ -21,7 +21,6 @@ const playerOne = new Fighter ('Ben');
 // Creating computer fighter
 const computer = new Fighter('opponent');
 
-
 // establishing fighter moves
 playerOne.moves = ['kick', 'lunge', 'punch'];
 computer.moves = ['kick', 'lunge', 'punch'];
@@ -111,6 +110,14 @@ const playerDeath = () => {
 }
 
 aliveCheck();
+const preGame = () => {
+$('.lunge').hide();
+$('.kick').hide();
+$('.punch').hide();
+$('.d6').hide();
+$('.d4').hide(); 
+}
+preGame();
 
 //==============================
 //              Buttons
@@ -121,6 +128,9 @@ $('.start').click(function (e) {
     $('#cHp').text(computer['hp']); 
     $('#pHp').text(playerOne['hp']);
     $(this).hide();
+    $('.lunge').show();
+    $('.kick').show();
+    $('.punch').show();
 });
 // display 3 attack buttons
 $('.lunge').on('click', (e) => {
@@ -130,6 +140,7 @@ $('.lunge').on('click', (e) => {
     if(hitRoll >= 15) {
         $('#stats').text('lunge roll passed, roll a d6 next.');
         console.log('hit roll passed, damage roll next');
+        $('.d6').show();
     } else {
         $('#stats').text('hit roll failed, computers turn.');
         console.log('hit roll failed, computers turn.');
@@ -143,6 +154,7 @@ $('.kick').on('click', (e) => {
     if(hitRoll >= 11) {
         $('#stats').text('Kick hit check has passed.');
         console.log('hit roll was greater than 11.');
+        $('.d4').show();
     } else {
         $('#stats').text('kick attempt failed.')
         console.log('hit roll failed, computers turn.');
@@ -156,6 +168,7 @@ $('.punch').on('click', (e) => {
     if(hitRoll >= 12){
         $('#stats').text('punch hit check has passed.');
         console.log('hit roll passed.');
+        $('.d4').show()
     } else {
         $('#stats').text('punch hit check failed.');
         console.log('hit roll failed, computers turn.'); 
@@ -170,7 +183,7 @@ $('.d20').on('click', (e) => {
     console.log(hitRoll);
 });
 
-
+// when a move is pressed show d6 and d4
 $('.d6').on('click', (e) => {
     d6Roll();
     console.log('rolling d6');
@@ -179,6 +192,7 @@ $('.d6').on('click', (e) => {
     playerOne.dmg = d6DmgRoll;
     console.log(playerOne.dmg + ' is players dmg');
     playerAttackDmg();
+    $('.d6').hide()
 });
 
 
@@ -190,6 +204,7 @@ $('.d4').on('click', (e) => {
     playerOne.dmg = d4DmgRoll;
     console.log(playerOne.dmg + ' is players dmg');
     playerAttackDmg();
+    $('.d4').hide();
 });
 // if hit show corresponding die button.
 // $('.d20Roll').hide();
@@ -206,11 +221,13 @@ const playerAttackDmg = () => {
    computer.hp = computer.hp - playerOne.dmg;
    $('#cHp').text(computer.hp);
    computerAttack();
+   aliveCheck();
 }
 const computerAttackDmg = () => {
     console.log('computer is attacking');
     playerOne.hp = playerOne.hp - computer.dmg;
     $('#pHp').text(playerOne.hp);
+    aliveCheck();
 }
 // and the user.
 // subtract how much damage has been dealt to corrisponding hp.
@@ -245,7 +262,7 @@ const computerAttack = () => {
                 computer.dmg = d6DmgRoll;
                 computerAttackDmg();
             } else {
-                $('#stats').text('hit roll failed players turn.');
+                $('#stats').text('computers hit roll failed players turn.');
                 console.log('hit roll failed, players turn.');
             }
     } else if(computerChoice === 2) { // kick choice
@@ -259,7 +276,7 @@ const computerAttack = () => {
                 computer.dmg = d4DmgRoll
                 computerAttackDmg();
                 } else {
-                     $('#stats').text('hit roll failed players turn.');
+                     $('#stats').text('computers hit roll failed players turn.');
                     console.log('hit roll failed, players turn.');
                 }
     } else if(computerChoice === 3) { // punch choice
@@ -272,7 +289,7 @@ const computerAttack = () => {
             computer.dmg = d4DmgRoll;
             computerAttackDmg();
         } else {
-             $('#stats').text('hit roll failed players turn.');
+             $('#stats').text('computers hit roll failed players turn.');
             console.log('hit roll failed, players turn.');
             
         }
