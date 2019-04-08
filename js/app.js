@@ -165,7 +165,6 @@ $('.d4').on('click', (e) => {
     d4Roll();
     console.log('rolling d4');
     console.log(d4DmgRoll)
-    
 });
 // if hit show corresponding die button.
 // $('.d20Roll').hide();
