@@ -99,6 +99,7 @@ const aliveCheck = () => {
     }
     if(computer.hp >= 0) {
         console.log('computer is alive.')
+        clearInterval();
     } else {
         alert('you have defeated your first opponent. onto the next round.')
     }
@@ -240,10 +241,8 @@ const computerAttackDmg = () => {
 // computer takes turn to attack player.
 let computerChoice = 2;
 const computerAttack = () => {
-    let computerAlive = true;
-    if(computer.hp > 0) {
         console.log('computer attacks player.');
-        computerAlive = true;
+if (computerAlive === true){
         computer.attack = playerOne;
        computerChoice = Math.floor(Math.random() * 3) + 1;
         console.log(computerChoice);
@@ -295,6 +294,7 @@ const computerAttack = () => {
         }
     }
 }
+
 // Do I need to create an attack function for the player as well? 
 // Create a function to go onto the next round.
 const nextRound = () => {
@@ -312,3 +312,8 @@ const nextRound = () => {
       $('.lunge').show();
       $('.punch').show();
   }
+
+
+  // Stop the game 
+  // create timer for hit splash to stay on for
+  
