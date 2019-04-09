@@ -104,6 +104,7 @@ const aliveCheck = () => {
         computerAlive= true;
     } else {
         alert('you have defeated your first opponent. onto the next round.')
+        $('.computer-fighter').hide();
     }
     // if both computer and player are alive move to next turn. 
 }
@@ -127,15 +128,19 @@ preGame();
  // showing the splash art of character damage.
 const computerHit = () => {
     $('.computer-splash-hit').show();
+    $('.chit-dmg').text(playerOne.dmg);
     setTimeout(() => {
         $('.computer-splash-hit').hide();
+        $('.chit-dmg').hide();
     }, 2000);
 }
 const playerHit = () => {
     $('.player-hit-splash').show();
+    $('.phit-dmg').text(computer.dmg);
 
     setTimeout(() => {
         $('.player-hit-splash').hide();
+        $('.phit-dmg').hide();
     }, 2000);
 
 }
@@ -168,7 +173,7 @@ $('.lunge').on('click', (e) => {
         console.log('hit roll failed, computers turn.');
         setTimeout(() => {
             computerAttack();
-        }, 3000);
+        }, 2000);
         clearInterval();
     }
 });
@@ -224,6 +229,10 @@ $('.d6').on('click', (e) => {
     console.log(playerOne.dmg + ' is players dmg');
     playerAttackDmg();
     $('.d6').hide()
+    setTimeout(() => {
+        computerAttack();
+    }, 2000);
+    clearInterval();
 });
 
 
@@ -236,6 +245,10 @@ $('.d4').on('click', (e) => {
     console.log(playerOne.dmg + ' is players dmg');
     playerAttackDmg();
     $('.d4').hide();
+    setTimeout(() => {
+        computerAttack();
+    }, 2000);
+    clearInterval();
 });
 // if hit show corresponding die button.
 // $('.d20Roll').hide();
