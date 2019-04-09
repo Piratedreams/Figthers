@@ -24,7 +24,17 @@ button {
 .game-title{
     position: center;
 }
-#stats {
-    
+.view-stage{
+    width: 1000px;
+    height: 500px;
+    background-color: blue;
 
+}
+.player-fighter{
+    float: left;
+}
+.computer-fighter{
+    -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  float: right;
 }
