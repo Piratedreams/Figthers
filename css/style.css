@@ -16,8 +16,17 @@ body {
     background-color: #CCCC13;
 
 }
+.computer-hit-splash{
+    height: 50px;
+    width: 50px;
+}
+.player-hit-splash{
+    height: 50px;
+    width: 50px;
+    
+}
 button {
-    color: 
+ 
     width: 50px;
     height: 20px;
 }

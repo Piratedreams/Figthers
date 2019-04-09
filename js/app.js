@@ -119,6 +119,8 @@ $('.kick').hide();
 $('.punch').hide();
 $('.d6').hide();
 $('.d4').hide(); 
+$('.computer-hit-splash').hide();
+$('.player-hit-splash').hide();
 }
 preGame();
 
@@ -330,3 +332,19 @@ const nextRound = () => {
   // Stop the game 
   // create timer for hit splash to stay on for
  
+
+  // function for displaying the hit when it hits with the image. 
+  const computerHit = () => {
+    $('.computer-splash-hit').show();
+    setTimeout(() => {
+        $('.computer-splash-hit').hide();
+    }, 2000);
+  }
+  const playerHit = () => {
+      $('.player-splash-hit').show();
+
+      setTimeout(() => {
+          $('.player-splash-hit').hide();
+      }, 2000);
+
+  }

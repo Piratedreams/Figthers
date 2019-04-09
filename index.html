@@ -31,10 +31,17 @@
     </div>
     <div class='view-stage'>
         <div class='player-fighter'>
-            <image src='css/images/fighter.gif'></image>
+            <image src='css/images/fighter.gif'><image class='player-hit-splash' src='css/images/red_hitsplat.png'>
+                <span class='phit-dmg'></span>
+            </image>
+        </image>
         </div>
         <div class='computer-fighter'>
-            <image src='css/images/computer fighter.gif'></image>
+            <image src='css/images/computer fighter.gif'>
+                <image class='computer-hit-splash' src='css/images/red_hitsplat.png'>
+                    <span class='chit-dmg'></span>
+                </image>
+            </image>
         </div>
     </div>
     <audio class='hit-sound' preload='auto'>
@@ -44,8 +51,7 @@
     <h3 class='stat-display'><span id='stats'></span></h3>
     </div>
    
-    <image class='hit-splash'>
-    
+
 
     <audio class='background-music'>
     <source id='backgroundmusic' src='sounds/background.mp3' type='audio/mp3'></source>
