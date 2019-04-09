@@ -2,6 +2,7 @@ body {
     background-color: brown;
     color: white;
     font-family: cabin;
+    text-align: center;
 }
 .move-list {
     text-decoration: none;
@@ -11,11 +12,9 @@ body {
     margin: 30px;
 }
 .menu {
-    padding: 30px;
-    margin: 20px;
-
+    padding: 10px;
+    margin: 10px;   
     background-color: rgb(6, 76, 134);
-
 }
 .computer-hit-splash{
     height: 50px;
@@ -30,26 +29,39 @@ body {
     float: right;
 }
 button {
- 
     width: 75px;
     height: 30px;
+    text-align: center;
+}
+.view-stage{
+    max-height: 400px;
 }
 .game-title{
     position: center;
 }
 .view-stage{
     width: 1200px;
-    height: 500px;
+    height: 300px;
     background-color: blue;
 
 }
 .player-fighter{
     float: left;
+    scale: 60%;
+    max-height: 300px;
+}
+#pfighter{
+        max-height: 300px;
+
+}
+#cfighter{
+        max-height: 300px;
 }
 .computer-fighter{
     -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
   float: right;
+  scale: 60%;
 }
 .stat-display{
     padding: 50px;
