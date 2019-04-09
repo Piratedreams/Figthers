@@ -17,9 +17,11 @@ class Die {
 }
 // Creating player1
 const playerOne = new Fighter ('Ben');
+let playerOneAlive = true;
 // input player name.
 // Creating computer fighter
 const computer = new Fighter('opponent');
+let computerAlive = true;
 
 // establishing fighter moves
 playerOne.moves = ['kick', 'lunge', 'punch'];
@@ -99,7 +101,7 @@ const aliveCheck = () => {
     }
     if(computer.hp >= 0) {
         console.log('computer is alive.')
-        clearInterval();
+        computerAlive= true;
     } else {
         alert('you have defeated your first opponent. onto the next round.')
     }
@@ -146,7 +148,10 @@ $('.lunge').on('click', (e) => {
     } else {
         $('#stats').text('hit roll failed, computers turn.');
         console.log('hit roll failed, computers turn.');
-        setTimeout();
+        setTimeout(() => {
+            computerAttack();
+        }, 3000);
+        clearInterval();
     }
 });
 // if kick is <= 11 hit -----> d4
@@ -160,7 +165,10 @@ $('.kick').on('click', (e) => {
     } else {
         $('#stats').text('kick attempt failed.')
         console.log('hit roll failed, computers turn.');
-        setTimeout();
+        setTimeout(() => {
+            computerAttack();
+        }, 2000);
+        clearInterval();
     }
 });
 // if punch is <= 12 hit ------> d4
@@ -174,7 +182,10 @@ $('.punch').on('click', (e) => {
     } else {
         $('#stats').text('punch hit check failed.');
         console.log('hit roll failed, computers turn.'); 
-        setTimeout();
+        setTimeout(() => {
+            computerAttack();
+        }, 2000);
+        clearInterval();
     }
 });
 
@@ -222,7 +233,7 @@ const playerAttackDmg = () => {
    console.log('player is attacking');
    computer.hp = computer.hp - playerOne.dmg;
    $('#cHp').text(computer.hp);
-   setTimeout();
+   
    aliveCheck();
 }
 const computerAttackDmg = () => {
@@ -241,6 +252,7 @@ const computerAttackDmg = () => {
 
 // computer takes turn to attack player.
 let computerChoice = 2;
+
 const computerAttack = () => {
         console.log('computer attacks player.');
 if (computerAlive === true){
@@ -317,6 +329,4 @@ const nextRound = () => {
 
   // Stop the game 
   // create timer for hit splash to stay on for
-  setTimeout(() => {
-      computerAttack();
-  }, 3000);
+ 
