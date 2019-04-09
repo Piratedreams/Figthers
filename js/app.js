@@ -132,6 +132,7 @@ $('.start').click(function (e) {
     $('.lunge').show();
     $('.kick').show();
     $('.punch').show();
+    let audio = $('.background-music')[0]; audio.play();
 });
 // display 3 attack buttons
 $('.lunge').on('click', (e) => {
@@ -145,7 +146,7 @@ $('.lunge').on('click', (e) => {
     } else {
         $('#stats').text('hit roll failed, computers turn.');
         console.log('hit roll failed, computers turn.');
-        computerAttack();
+        setTimeout();
     }
 });
 // if kick is <= 11 hit -----> d4
@@ -159,7 +160,7 @@ $('.kick').on('click', (e) => {
     } else {
         $('#stats').text('kick attempt failed.')
         console.log('hit roll failed, computers turn.');
-        computerAttack();
+        setTimeout();
     }
 });
 // if punch is <= 12 hit ------> d4
@@ -173,7 +174,7 @@ $('.punch').on('click', (e) => {
     } else {
         $('#stats').text('punch hit check failed.');
         console.log('hit roll failed, computers turn.'); 
-        computerAttack();
+        setTimeout();
     }
 });
 
@@ -221,7 +222,7 @@ const playerAttackDmg = () => {
    console.log('player is attacking');
    computer.hp = computer.hp - playerOne.dmg;
    $('#cHp').text(computer.hp);
-   computerAttack();
+   setTimeout();
    aliveCheck();
 }
 const computerAttackDmg = () => {
@@ -316,4 +317,6 @@ const nextRound = () => {
 
   // Stop the game 
   // create timer for hit splash to stay on for
-  
+  setTimeout(() => {
+      computerAttack();
+  }, 3000);
