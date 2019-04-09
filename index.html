@@ -3,39 +3,62 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>1 vs 100 game</title>
+    <title>Roulette: the game</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Cabin|Open+Sans" rel="stylesheet">
 </head>
 <body>
 
-    <h1>1 vs 100</h1>
-    <button class='start' id="start">Start Game</button>
-    <div class='stats'>
-        <h5 class='player-hp'>Player HP: <span id='pHp'></span></h5>
-        <h5 class='computer-hp'>Computer HP: <span id='cHp'></span></h5>
+    <h1 class='game-title'>Roulette: The Game</h1>
+    <div class='view-stage'>
+        <div class='player-fighter'>
+            <image src='css/images/fighter.gif'>
+                <image class='player-hit-splash' src='css/images/red_hitsplat.png'>
+                    <span class='phit-dmg'></span>
+                </image>
+            </image>
+        </div>
+        <div class='computer-fighter'>
+            <image src='css/images/computer fighter.gif'>
+                <image class='computer-hit-splash' src='css/images/red_hitsplat.png'>
+                    <span class='chit-dmg'></span>
+                </image>
+            </image>
+        </div>
     </div>
-    <div class='move-bar'>
-        <ul class ='move-list'>
-            <button class='lunge'>Lunge</button>
-            <button class='kick'>Kick</button>
-            <button class='punch'>Punch</button>
-        </ul>
+    <div class='menu'>
+        <button class='start' id="start">Start Game</button>
+        <div class='stats'>
+            <h5 class='player-hp'>Player HP: <span id='pHp'></span></h5>
+            <h5 class='computer-hp'>Computer HP: <span id='cHp'></span></h5>
+        </div>
+        <div class='move-bar'>
+            <ul class ='move-list'>
+                <button class='lunge'>Lunge</button>
+                <button class='kick'>Kick</button>
+                <button class='punch'>Punch</button>
+            </ul>
+        </div>
+        <div class='die-bar'>
+            <button class='d6'>Roll d6</button>
+            <button class='d4'>Roll d4</button> 
+        </div>
+        <div class='stats-bar'>
+            <h3 class='stat-display'><span id='stats'></span></h3>
+        </div>
     </div>
-    <div class='die-bar'>
-        <button class='d20'>d20</button>
-        <button class='d6'>d6</button>
-        <button class='d4'>d4</button>
-        <h3 class=''
-    </div>
-    <div class='view-stage'></div>
-
+   
+    <audio class='hit-sound' preload='auto'>
+    <source id='hit' src='sounds/hit.mp3' type='audio/mp3'></source>
+    </audio>
+   
    
 
 
-
-
+    <audio class='background-music'>
+    <source id='backgroundmusic' src='sounds/background.mp3' type='audio/mp3'></source>
+    </audio>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
 <script src="js/app.js"></script>
 </body>
