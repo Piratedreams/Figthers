@@ -121,9 +121,24 @@ $('.d6').hide();
 $('.d4').hide(); 
 $('.computer-hit-splash').hide();
 $('.player-hit-splash').hide();
+$('.view-stage').hide();
 }
 preGame();
+ // showing the splash art of character damage.
+const computerHit = () => {
+    $('.computer-splash-hit').show();
+    setTimeout(() => {
+        $('.computer-splash-hit').hide();
+    }, 2000);
+}
+const playerHit = () => {
+    $('.player-hit-splash').show();
 
+    setTimeout(() => {
+        $('.player-hit-splash').hide();
+    }, 2000);
+
+}
 //==============================
 //              Buttons
 //==============================
@@ -136,7 +151,8 @@ $('.start').click(function (e) {
     $('.lunge').show();
     $('.kick').show();
     $('.punch').show();
-    let audio = $('.background-music')[0]; audio.play();
+    $('.view-stage').show();
+    // let audio = $('.background-music')[0]; audio.play();
 });
 // display 3 attack buttons
 $('.lunge').on('click', (e) => {
@@ -235,7 +251,8 @@ const playerAttackDmg = () => {
    console.log('player is attacking');
    computer.hp = computer.hp - playerOne.dmg;
    $('#cHp').text(computer.hp);
-   
+   $('#stats').text(`you did ${playerOne.dmg} points of dmg.`)
+   computerHit();
    aliveCheck();
 }
 const computerAttackDmg = () => {
@@ -243,6 +260,8 @@ const computerAttackDmg = () => {
     playerOne.hp = playerOne.hp - computer.dmg;
     $('#pHp').text(playerOne.hp);
     aliveCheck();
+    $('#stats').text(`computer did ${computer.dmg} points of dmg.`)
+    playerHit();
 }
 // and the user.
 // subtract how much damage has been dealt to corrisponding hp.
@@ -334,17 +353,4 @@ const nextRound = () => {
  
 
   // function for displaying the hit when it hits with the image. 
-  const computerHit = () => {
-    $('.computer-splash-hit').show();
-    setTimeout(() => {
-        $('.computer-splash-hit').hide();
-    }, 2000);
-  }
-  const playerHit = () => {
-      $('.player-splash-hit').show();
-
-      setTimeout(() => {
-          $('.player-splash-hit').hide();
-      }, 2000);
-
-  }
+ 

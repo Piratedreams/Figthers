@@ -11,30 +11,13 @@
 <body>
 
     <h1 class='game-title'>Roulette: The Game</h1>
-    <button class='start' id="start">Start Game</button>
-    <div class='stats'>
-        <h5 class='player-hp'>Player HP: <span id='pHp'></span></h5>
-        <h5 class='computer-hp'>Computer HP: <span id='cHp'></span></h5>
-    </div>
-    <div class='menu'>
-        <div class='move-bar'>
-            <ul class ='move-list'>
-                <button class='lunge'>Lunge</button>
-                <button class='kick'>Kick</button>
-                <button class='punch'>Punch</button>
-            </ul>
-        </div>
-        <div class='die-bar'>
-            <button class='d6'>Roll d6</button>
-            <button class='d4'>Roll d4</button>
-        </div>
-    </div>
     <div class='view-stage'>
         <div class='player-fighter'>
-            <image src='css/images/fighter.gif'><image class='player-hit-splash' src='css/images/red_hitsplat.png'>
-                <span class='phit-dmg'></span>
+            <image src='css/images/fighter.gif'>
+                <image class='player-hit-splash' src='css/images/red_hitsplat.png'>
+                    <span class='phit-dmg'></span>
+                </image>
             </image>
-        </image>
         </div>
         <div class='computer-fighter'>
             <image src='css/images/computer fighter.gif'>
@@ -44,12 +27,32 @@
             </image>
         </div>
     </div>
+    <div class='menu'>
+        <button class='start' id="start">Start Game</button>
+        <div class='stats'>
+            <h5 class='player-hp'>Player HP: <span id='pHp'></span></h5>
+            <h5 class='computer-hp'>Computer HP: <span id='cHp'></span></h5>
+        </div>
+        <div class='move-bar'>
+            <ul class ='move-list'>
+                <button class='lunge'>Lunge</button>
+                <button class='kick'>Kick</button>
+                <button class='punch'>Punch</button>
+            </ul>
+        </div>
+        <div class='die-bar'>
+            <button class='d6'>Roll d6</button>
+            <button class='d4'>Roll d4</button> 
+        </div>
+        <div class='stats-bar'>
+            <h3 class='stat-display'><span id='stats'></span></h3>
+        </div>
+    </div>
+   
     <audio class='hit-sound' preload='auto'>
     <source id='hit' src='sounds/hit.mp3' type='audio/mp3'></source>
     </audio>
-    <div class='stats-bar'>
-    <h3 class='stat-display'><span id='stats'></span></h3>
-    </div>
+   
    
 
 
