@@ -110,15 +110,9 @@ const aliveCheck = () => {
 }
 // stop game when player dies.
 const playerDeath = () => {
-    prompt('you died! play again?', 'y/n?');
-    let input = '';
-    if(input === 'y'){
+        alert('you have died! a new champion will be created.');
         window.location.reload();
-    } else {
-        alert('What a whimp!');
     }
-}
-
 aliveCheck();
 const preGame = () => {
 $('.lunge').hide();
@@ -129,6 +123,7 @@ $('.d4').hide();
 $('.computer-hit-splash').hide();
 $('.player-hit-splash').hide();
 $('.view-stage').hide();
+$('#dialog-confirm').hide();
 }
 preGame();
  // showing the splash art of character damage.
