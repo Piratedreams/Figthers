@@ -4,7 +4,7 @@ class Fighter{
     constructor(name){
         this.name = '';
         this.hp = 10;
-        this.dmg = 0;
+        this.dmg = 1;
         this.moves = [];
         this.attack = '';
         
@@ -57,8 +57,8 @@ const d20Roll = () => {
 const d6Roll = (e) => {
     console.log('d6 was rolled.');
     d6DmgRoll = Math.floor(Math.random() * 6) + 1;
+    let audio = $('.hit-sound')[0]; audio.play();
     return d6DmgRoll;
-    $('.hit-sound').play();
 }
 // have a d4 check for punch dmg. 
 const d4Roll = (e) => {
@@ -76,6 +76,7 @@ const  kickDmg = () => {
         $('#cHp').text(computer['hp']); 
         $('#pHp').text(playerOne['hp']);
     }
+    aliveCheck();
 }
 const  LungeDmg = () => {
     if (d6DmgRoll >= 1){
@@ -83,6 +84,7 @@ const  LungeDmg = () => {
         $('#pHp').text(computer['hp']); 
         $('#cHp').text(playerOne['hp']);
     }
+    aliveCheck();
 }
 const  punchDmg = () => {
     if (d4DmgRoll >= 1){
@@ -90,6 +92,7 @@ const  punchDmg = () => {
         $('#cHp').text(computer['hp']); 
         $('#pHp').text(playerOne['hp']);
     }
+    aliveCheck();
 }
 // check if each character is alive
 const aliveCheck = () => {
@@ -110,15 +113,9 @@ const aliveCheck = () => {
 }
 // stop game when player dies.
 const playerDeath = () => {
-    prompt('you died! play again?', 'y/n?');
-    let input = '';
-    if(input === 'y'){
+        alert('you have died! a new champion will be created.');
         window.location.reload();
-    } else {
-        alert('What a whimp!');
     }
-}
-
 aliveCheck();
 const preGame = () => {
 $('.lunge').hide();
@@ -129,6 +126,7 @@ $('.d4').hide();
 $('.computer-hit-splash').hide();
 $('.player-hit-splash').hide();
 $('.view-stage').hide();
+$('#dialog-confirm').hide();
 }
 preGame();
  // showing the splash art of character damage.
@@ -165,7 +163,7 @@ $('.start').click(function (e) {
     $('.kick').show();
     $('.punch').show();
     $('.view-stage').show();
-    // let audio = $('.background-music')[0]; audio.play();
+    let audio = $('.background-music')[0]; audio.play();
 });
 // display 3 attack buttons
 $('.lunge').on('click', (e) => {
@@ -237,10 +235,12 @@ $('.d6').on('click', (e) => {
     console.log(playerOne.dmg + ' is players dmg');
     playerAttackDmg();
     $('.d6').hide()
-    setTimeout(() => {
-        computerAttack();
-    }, 2000);
-    clearInterval();
+    if (computerAlive === true) {
+        setTimeout(() => {
+            computerAttack();
+        }, 2000);
+        clearInterval();
+    }
 });
 
 
@@ -253,10 +253,12 @@ $('.d4').on('click', (e) => {
     console.log(playerOne.dmg + ' is players dmg');
     playerAttackDmg();
     $('.d4').hide();
+    if(computerAlive === true){
     setTimeout(() => {
         computerAttack();
     }, 2000);
     clearInterval();
+    }
 });
 // if hit show corresponding die button.
 // $('.d20Roll').hide();
