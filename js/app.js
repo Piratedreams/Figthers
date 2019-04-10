@@ -95,14 +95,14 @@ const  punchDmg = () => {
 const aliveCheck = () => {
     if(playerOne.hp >= 0){
         console.log('player is alive.')
-    } else {
+    } else if (playerOne.hp <= 0) {
         console.log('player has died! YOU LOSE!');
         playerDeath();
     }
     if(computer.hp >= 0) {
         console.log('computer is alive.')
         computerAlive= true;
-    } else {
+    } else if (computer.hp <= 0){
         alert('you have defeated your first opponent. onto the next round.')
         $('.computer-fighter').hide();
     }
@@ -111,6 +111,12 @@ const aliveCheck = () => {
 // stop game when player dies.
 const playerDeath = () => {
     prompt('you died! play again?', 'y/n?');
+    let input = '';
+    if(input === 'y'){
+        window.location.reload();
+    } else {
+        alert('What a whimp!');
+    }
 }
 
 aliveCheck();
@@ -133,6 +139,7 @@ const computerHit = () => {
         $('.computer-splash-hit').hide();
         $('.chit-dmg').hide();
     }, 2000);
+    aliveCheck();
 }
 const playerHit = () => {
     $('.player-hit-splash').show();
@@ -142,6 +149,7 @@ const playerHit = () => {
         $('.player-hit-splash').hide();
         $('.phit-dmg').hide();
     }, 2000);
+    aliveCheck();
 
 }
 //==============================

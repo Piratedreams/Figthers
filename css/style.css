@@ -28,7 +28,7 @@ body {
     
 }
 .die-bar{
-    float: right;
+    float: center;
 }
 button {
     width: 75px;
@@ -54,7 +54,7 @@ button {
 }
 #pfighter{
         max-height: 300px;
-
+        
 }
 #cfighter{
         max-height: 300px;
