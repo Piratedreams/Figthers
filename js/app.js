@@ -75,24 +75,26 @@ const  kickDmg = () => {
         computer.hp -= computer.hp - d4DmgRoll;
         $('#cHp').text(computer['hp']); 
         $('#pHp').text(playerOne['hp']);
+        aliveCheck();
     }
-    aliveCheck();
+ 
 }
 const  LungeDmg = () => {
     if (d6DmgRoll >= 1){
         computer.hp -= computer.hp - d6DmgRoll;
         $('#pHp').text(computer['hp']); 
         $('#cHp').text(playerOne['hp']);
+        aliveCheck();
     }
-    aliveCheck();
 }
 const  punchDmg = () => {
     if (d4DmgRoll >= 1){
         computer.hp -= computer.hp - d4DmgRoll;
         $('#cHp').text(computer['hp']); 
         $('#pHp').text(playerOne['hp']);
+        aliveCheck();
     }
-    aliveCheck();
+  
 }
 // check if each character is alive
 const aliveCheck = () => {
@@ -104,10 +106,11 @@ const aliveCheck = () => {
     }
     if(computer.hp >= 0) {
         console.log('computer is alive.')
-        computerAlive= true;
     } else if (computer.hp <= 0){
         alert('you have defeated your first opponent. onto the next round.')
         $('.computer-fighter').hide();
+
+        nextRound();
     }
     // if both computer and player are alive move to next turn. 
 }
@@ -163,6 +166,7 @@ $('.start').click(function (e) {
     $('.kick').show();
     $('.punch').show();
     $('.view-stage').show();
+    $('.desc').hide();
     let audio = $('.background-music')[0]; audio.play();
 });
 // display 3 attack buttons
@@ -175,7 +179,7 @@ $('.lunge').on('click', (e) => {
         console.log('hit roll passed, damage roll next');
         $('.d6').show();
     } else {
-        $('#stats').text('hit roll failed, computers turn.');
+        $('#stats').text('lunge roll failed, computers turn.');
         console.log('hit roll failed, computers turn.');
         setTimeout(() => {
             computerAttack();
@@ -317,6 +321,7 @@ if (computerAlive === true){
                
                 computer.dmg = d6DmgRoll;
                 computerAttackDmg();
+                aliveCheck();
             } else {
                 $('#stats').text('computers hit roll failed players turn.');
                 console.log('hit roll failed, players turn.');
@@ -331,6 +336,7 @@ if (computerAlive === true){
                
                 computer.dmg = d4DmgRoll
                 computerAttackDmg();
+                aliveCheck();
                 } else {
                      $('#stats').text('computers hit roll failed players turn.');
                     console.log('hit roll failed, players turn.');
@@ -344,6 +350,7 @@ if (computerAlive === true){
             console.log('hit roll passed onto damage roll');
             computer.dmg = d4DmgRoll;
             computerAttackDmg();
+            aliveCheck();
         } else {
              $('#stats').text('computers hit roll failed players turn.');
             console.log('hit roll failed, players turn.');
@@ -358,9 +365,12 @@ const nextRound = () => {
     if (computer.hp === 0){
         playerOne.hp = 10;
         // increase computer hp by 1 each round. 
-
+        const computer = new Fighter('lvl 2 goon')
+        computer.hp = 11;
+        $('.computer-fighter').show();
     }
 }
+
   // reset function to show all of the buttons again.
   const showAll = () => {
       $('.d6').show();
